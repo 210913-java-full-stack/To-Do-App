@@ -1,4 +1,4 @@
-# To Do App
+# To Do App - DONT PUSH TO MAIN OR KYLE WILL BE VERR UPSET
 We will be building and refactoring a simple to-do list application throughout the first two weeks of training. The app we build can be found here in this repository.
 
 ## Technology
