@@ -1,6 +1,9 @@
+import models.TestModel;
 import models.ToDoItem;
 import utils.PrintView;
 
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,9 +12,9 @@ public class Driver {
     public static void main(String[] args) {
 
         // View command line arguments passed to app
-        for(int i = 0; i < args.length; i++) {
-            System.out.println(args[i]);
-        }
+//        for(int i = 0; i < args.length; i++) {
+//            System.out.println(args[i]);
+//        }
 
         //Scanner object bound to System.in, the console input
         Scanner sc = new Scanner(System.in);
@@ -19,15 +22,50 @@ public class Driver {
         /*List of ToDoItem objects
         Here we create a number of static todoitems and store them into our list. Later we will re-design
         this to be more dynamic and persistent.
-         */
+        */
         List<ToDoItem> toDoList = new LinkedList<>();
-        ToDoItem newItem1 = new ToDoItem("Build a to do list");
+        ToDoItem newItem1 = new ToDoItem();
+        newItem1.setToDoText("Build a to do list"); //this is the same as doing it with the constructor
         toDoList.add(newItem1);
         ToDoItem newItem2 = new ToDoItem("Debug the new to do list");
         toDoList.add(newItem2);
         ToDoItem newItem3 = new ToDoItem("enjoy your new to do list!");
         toDoList.add(newItem3);
+        ToDoItem newItem4 = new ToDoItem("Quit the app!");
+        toDoList.add(newItem3);
 
+
+
+        //Database connection stuff
+
+
+        try {
+            Connection conn = DriverManager.getConnection(connString);
+
+            String sql = "SELECT * FROM test_table";
+            Statement stmt = conn.createStatement();
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            List<TestModel> resultList = new ArrayList<>();
+            while(rs.next()) {
+                TestModel temp = new TestModel();
+                temp.setId(rs.getInt("id"));
+                temp.setName(rs.getString("name"));
+                temp.setString(rs.getString("string"));
+                resultList.add(temp);
+            }
+
+            for (TestModel tm : resultList) {
+                System.out.println(tm);
+            }
+
+
+        } catch (SQLException | IndexOutOfBoundsException e) {
+            //TODO: Do this better! This is not an adequate way to handle exceptions.
+            //This is an adequate way to procrastinate handling exceptions.
+            e.printStackTrace();
+        }
 
 
         //Main app loop
