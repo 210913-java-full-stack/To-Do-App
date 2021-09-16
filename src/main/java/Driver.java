@@ -1,7 +1,9 @@
 import models.TestModel;
 import models.ToDoItem;
+import utils.ConnectionManager;
 import utils.PrintView;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -35,12 +37,8 @@ public class Driver {
         toDoList.add(newItem3);
 
 
-
-        //Database connection stuff
-
-
         try {
-            Connection conn = DriverManager.getConnection(connString);
+            Connection conn = ConnectionManager.getConnection();
 
             String sql = "SELECT * FROM test_table";
             Statement stmt = conn.createStatement();
@@ -61,11 +59,12 @@ public class Driver {
             }
 
 
-        } catch (SQLException | IndexOutOfBoundsException e) {
-            //TODO: Do this better! This is not an adequate way to handle exceptions.
-            //This is an adequate way to procrastinate handling exceptions.
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
+
+
+
 
 
         //Main app loop
