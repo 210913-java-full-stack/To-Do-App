@@ -1,5 +1,15 @@
+import models.TestModel;
 import models.ToDoItem;
 import utils.PrintView;
+import utils.ConnectionManager;
+
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import java.util.LinkedList;
@@ -27,6 +37,34 @@ public class Driver {
 //
 //        ToDoItem newItem3 = new ToDoItem("enjoy your new to do list!");
 //        toDoList.add(newItem3);
+
+        try {
+
+
+            Connection conn = ConnectionManager.getConnection();
+
+            String sql = "SELECT a.account_id, a.balance FROM accounts a \n" +
+                    "JOIN accounts_customers ac ON a.account_id = ac.account_id \n" +
+                    "JOIN customers c ON ac.customer_id = c.customer_id \n" +
+                    "JOIN address ad ON c.address_id = ad.address_id \n" +
+                    "WHERE ad.state = \"NY\";";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            List<TestModel> resultList = new ArrayList<>();
+            while(rs.next()) {
+                TestModel temp = new TestModel();
+                temp.setId(rs.getInt("account_id"));
+                temp.setBalance(rs.getInt("balance"));
+                resultList.add(temp);
+
+            }
+            for (TestModel tm : resultList) {
+                System.out.println(tm);
+            }
+        } catch (SQLException | IOException  e) {
+            e.printStackTrace();
+        }
 
 
         boolean running = true;
