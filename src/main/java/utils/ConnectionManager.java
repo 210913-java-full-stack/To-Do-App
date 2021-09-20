@@ -8,6 +8,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ *
+ *
+ */
 public class ConnectionManager {
     private static Connection conn;
 
@@ -16,6 +20,10 @@ public class ConnectionManager {
     }
 
 
+
+    /*
+    This is a static method for returning a connection in the factory singleton design pattern
+     */
     public static Connection getConnection() throws SQLException, IOException {
         if(conn == null) {
             Properties props = new Properties();
@@ -33,8 +41,6 @@ public class ConnectionManager {
 
             conn = DriverManager.getConnection(connString);
         }
-
-
         return conn;
     }
 
