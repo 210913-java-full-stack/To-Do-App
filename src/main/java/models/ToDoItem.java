@@ -1,24 +1,43 @@
 package models;
 
 public class ToDoItem {
-    private String toDoText;
+    private int id;
+    private String message;
     private boolean complete;
 
     public ToDoItem() {
         complete = false;
     }
 
-    public ToDoItem(String toDoText) {
+    public ToDoItem(String message) {
         complete = false;
-        this.toDoText = toDoText;
+        this.id = id;
+        this.message = message;
+
     }
 
-    public String getToDoText() {
-        return toDoText;
+    public ToDoItem(int id, String message) {
+        complete = false;
+        this.id = id;
+        this.message = message;
+
     }
 
-    public void setToDoText(String toDoText) {
-        this.toDoText = toDoText;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public boolean isComplete() {

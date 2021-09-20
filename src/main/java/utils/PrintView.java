@@ -10,6 +10,6 @@ public class PrintView {
         } else {
             System.out.print(" ");
         }
-        System.out.println("] " + item.getToDoText());
+        System.out.println("] " + item.getMessage());
     }
 }
