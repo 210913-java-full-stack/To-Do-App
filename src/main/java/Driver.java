@@ -34,6 +34,8 @@ public class Driver {
             e.printStackTrace();
         }
 
+
+        //We will move this into our main menu view. We will keep the logic here that keeps the app running, our main loop.
         boolean running = true;
         while(running) {
             System.out.println("===MAIN MENU===\nEnter selection:\n\n1) View ToDo Items.\n2) Mark item complete.\nQ) Quit");
