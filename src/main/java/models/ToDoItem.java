@@ -23,6 +23,12 @@ public class ToDoItem {
 
     }
 
+    public ToDoItem(int id, String message, boolean complete) {
+        this.id = id;
+        this.message = message;
+        this.complete = complete;
+    }
+
 
     public int getId() {
         return id;
