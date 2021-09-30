@@ -2,6 +2,7 @@ package DAOs;
 
 
 
+import collections.MyLinkedList;
 import models.ToDoItem;
 
 import java.sql.*;
@@ -64,13 +65,13 @@ public class ToDoItemDAO implements ToDoCrud<ToDoItem>{
     }
 
     @Override
-    public List<ToDoItem> getAllItems() throws SQLException {
+    public MyLinkedList<ToDoItem> getAllItems() throws SQLException {
         String sql = "SELECT * FROM to_do_items";
         Statement stmt = conn.createStatement();
 
         ResultSet rs = stmt.executeQuery(sql);
 
-        List<ToDoItem> resultList = new LinkedList<>();
+        MyLinkedList<ToDoItem> resultList = new MyLinkedList<>();
 
         while(rs.next()) {
             ToDoItem newItem = new ToDoItem(rs.getInt("id"), rs.getString("message"), rs.getBoolean("complete"));
