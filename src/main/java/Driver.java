@@ -17,24 +17,8 @@ public class Driver {
         ViewManager viewManager = ViewManager.getViewManager();
 
         //connection
-        Connection conn = ConnectionManager.getConnection();
+        //Connection conn = ConnectionManager.getConnection();
 
-        ////////////////////////////////////////
-        //Tinkering: in this example we are using the DAO statically
-        CarModel newCar = new CarModel();
-        newCar.setColor("black");
-        newCar.setMake("Nissan");
-        newCar.setModel("Sentra");
-        newCar.setYear(2012);
-        try {
-            CarDAO.save(newCar);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Auto incremented sequence ID assigned to car: " + newCar.getId());
-
-        //////////////////////////////////////
 
         /**
          * This is our main loop, it keep running until something sets the viewManager "running" flag = false;
@@ -51,4 +35,21 @@ public class Driver {
         }
     }
 }
+
+//        //////////////////////////////////////// This is tinkering
+//        //Tinkering: in this example we are using the DAO statically
+//        CarModel newCar = new CarModel();
+//        newCar.setColor("black");
+//        newCar.setMake("Nissan");
+//        newCar.setModel("Sentra");
+//        newCar.setYear(2012);
+//        try {
+//            CarDAO.save(newCar);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        System.out.println("Auto incremented sequence ID assigned to car: " + newCar.getId());
+//
+//        //////////////////////////////////////
 

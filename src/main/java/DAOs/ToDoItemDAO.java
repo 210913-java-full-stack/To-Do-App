@@ -43,7 +43,6 @@ public class ToDoItemDAO implements GenericDAO<ToDoItem> {
             preparedInsertStatement.executeUpdate();
 
         }
-
     }
 
     @Override

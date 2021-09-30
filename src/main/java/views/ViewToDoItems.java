@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class ViewToDoItems extends View{
 
 
-    public ViewToDoItems(/*String viewName, */Scanner scanner) {
+    public ViewToDoItems(Scanner scanner) {
         super("ViewToDoList", scanner);
     }
 
