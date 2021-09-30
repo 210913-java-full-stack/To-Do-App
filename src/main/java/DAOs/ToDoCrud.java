@@ -1,5 +1,6 @@
 package DAOs;
 
+import collections.MyLinkedList;
 import models.ToDoItem;
 
 import java.sql.Connection;
@@ -16,7 +17,7 @@ public interface ToDoCrud<T> {
     //read
         //query data from database, fill in empty model object
         public T getItemByID(int id) throws SQLException;
-        public List<T> getAllItems() throws SQLException;
+        public MyLinkedList<T> getAllItems() throws SQLException;
         //public ToDoItem getItemByKeyword(String keyword); //SELECT * FROM items WHERE message LIKE "%KEYWORD%"
     //update
         // we will use the save() method for updates

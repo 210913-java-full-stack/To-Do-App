@@ -1,72 +1,36 @@
+
 import DAOs.ToDoItemDAO;
-import models.CarModel;
-import models.TestModel;
 import models.ToDoItem;
 import utils.ConnectionManager;
-import utils.PrintView;
+import utils.ViewManager;
 
-import java.io.IOException;
+
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+
 
 //This is where our program starts, with the main method and contains the menus and primary loop.
 public class Driver {
     public static void main(String[] args) {
+        //viewManager
+        ViewManager viewManager = ViewManager.getViewManager();
+
+        //connection
+        Connection conn = ConnectionManager.getConnection();
 
 
-        //Scanner object bound to System.in, the console input
-        Scanner sc = new Scanner(System.in);
-
-        List<ToDoItem> toDoList = new LinkedList<>();
-
-
-        try (Connection conn = ConnectionManager.getConnection()){
-
-            ToDoItem newItem = new ToDoItem("Build a UI for our app");
-            ToDoItemDAO dao = new ToDoItemDAO(conn);
-            dao.save(newItem);
-
-
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
-        }
-
-
-        //We will move this into our main menu view. We will keep the logic here that keeps the app running, our main loop.
-        boolean running = true;
-        while(running) {
-            System.out.println("===MAIN MENU===\nEnter selection:\n\n1) View ToDo Items.\n2) Mark item complete.\nQ) Quit");
-            String input = sc.nextLine();
-
-            switch(input) {
-                case "1":
-                    System.out.println("========== To Do List: ==========");
-                    for(int i = 0; i < toDoList.size(); i++) {
-                        PrintView.printMyView(i, toDoList.get(i));
-                    }
-                    System.out.println("=================================");
-                    break;
-                case "2":
-                    //mark item complete method
-                    System.out.println("========== To Do List: ==========");
-                    for(int i = 0; i < toDoList.size(); i++) {
-                        PrintView.printMyView(i, toDoList.get(i));
-                    }
-                    System.out.print("\nEnter item number to mark complete: ");
-                    String choice = sc.nextLine(); //Or we could do sc.nextInt(); but then we need to consume the leftover newline character
-                    toDoList.get(Integer.parseInt(choice)).setComplete(true);
-
-                    System.out.println("\n Item #" + choice + " is complete!");
-
-                    break;
-                case "Q":
-                case "q":
-                    running = false;
-                    break;
+        /**
+         * This is our main loop, it keep running until something sets the viewManager "running" flag = false;
+         * With every loop we invoke the viewManager singleton's goToNextView() method.
+         */
+        viewManager.navigate("MainMenu");
+        while(viewManager.isRunning()) {
+            try{
+                viewManager.goToNextView();
+            } catch(SQLException e) {
+                e.printStackTrace();
             }
+
         }
     }
 }
+
