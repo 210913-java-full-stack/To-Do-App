@@ -1,5 +1,7 @@
 
+import DAOs.CarDAO;
 import DAOs.ToDoItemDAO;
+import models.CarModel;
 import models.ToDoItem;
 import utils.ConnectionManager;
 import utils.ViewManager;
@@ -17,6 +19,22 @@ public class Driver {
         //connection
         Connection conn = ConnectionManager.getConnection();
 
+        ////////////////////////////////////////
+        //Tinkering: in this example we are using the DAO statically
+        CarModel newCar = new CarModel();
+        newCar.setColor("black");
+        newCar.setMake("Nissan");
+        newCar.setModel("Sentra");
+        newCar.setYear(2012);
+        try {
+            CarDAO.save(newCar);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Auto incremented sequence ID assigned to car: " + newCar.getId());
+
+        //////////////////////////////////////
 
         /**
          * This is our main loop, it keep running until something sets the viewManager "running" flag = false;

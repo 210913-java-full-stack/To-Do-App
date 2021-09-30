@@ -26,6 +26,7 @@ public class ViewManager {
     private Scanner scanner;
 
     private ViewManager() {
+        viewManager = this;
         running = true;
         conn = ConnectionManager.getConnection();
         scanner = new Scanner(System.in);
