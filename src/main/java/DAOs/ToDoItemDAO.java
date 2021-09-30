@@ -6,10 +6,8 @@ import collections.MyLinkedList;
 import models.ToDoItem;
 
 import java.sql.*;
-import java.util.LinkedList;
-import java.util.List;
 
-public class ToDoItemDAO implements ToDoCrud<ToDoItem>{
+public class ToDoItemDAO implements GenericDAO<ToDoItem> {
     private Connection conn;
 
     public ToDoItemDAO(Connection conn) {

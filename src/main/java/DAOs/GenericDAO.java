@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ToDoCrud<T> {
+public interface GenericDAO<T> {
     //we will need a Connection in the class, but interfaces generally don't have fields
     //Connection conn = null;
 
