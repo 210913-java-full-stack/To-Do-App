@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--web.xml is your depoyment descriptor
+<!--web.xml is your deployment descriptor
         this is how tomcat gathers information about your project, such as welcome files,
             available servlets, how to handle errors and exceptions, and other various
             configurations you may want tomcat to know about.
@@ -13,6 +13,33 @@
 
 
 
+    <listener>
+        <listener-class>servlets.DependencyLoaderListener</listener-class>
+    </listener>
+
+<servlet>
+    <servlet-name>pingServlet</servlet-name>
+    <servlet-class>servlets.PingServlet</servlet-class>
+
+</servlet>
+
+    <servlet-mapping>
+        <servlet-name>pingServlet</servlet-name>
+        <url-pattern>/ping</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>getItemServlet</servlet-name>
+        <servlet-class>servlets.getItemServlet</servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>getItemServlet</servlet-name>
+        <url-pattern>/food</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>
