@@ -16,7 +16,7 @@ public class HtmlServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response){
-        int id = Integer.parseInt(request.getParameter(""));
+        int id = Integer.parseInt(request.getParameter("id"));
 
 
         try {
