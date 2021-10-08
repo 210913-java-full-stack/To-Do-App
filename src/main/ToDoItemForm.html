@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDoItemForm</title>
+</head>
+<body>
+<form method="post" action="http://localhost:8080/to-do-app/manager">
+    <h1>This is a form to create a new To-Do-Item</h1>
+    Please enter your Item's ID number: <input type="number" name="id" placeholder="please enter a number"><br>
+    Please enter the text you want to add to your To-Do-List: <input type="text" name="message"><br>
+    Is your To-Do-Item complete?
+    <select name="complete" id="complete">
+        <option value="True">True</option>
+        <option value="False">False</option></select><br>
+
+        <input type="submit" value="Submit">
+</form>
+
+
+</body>
+</html>
