@@ -22,6 +22,15 @@
         <url-pattern>/ping</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>htmlServlet</servlet-name>
+        <servlet-class>servlets.HtmlServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>htmlServlet</servlet-name>
+        <url-pattern>/html</url-pattern>
+    </servlet-mapping>
+
 
 
 
