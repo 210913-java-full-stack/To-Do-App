@@ -19,10 +19,27 @@
         <servlet-name>pingServlet</servlet-name>
         <servlet-class>servlets.PingServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>pingServlet</servlet-name>
         <url-pattern>/ping</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>dataServlet</servlet-name>
+        <servlet-class>servlet.DataServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dataServlet</servlet-name>
+        <url-pattern>/data</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>jacksonServlet</servlet-name>
+        <servlet-class>servlet.JacksonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>jacksonServlet</servlet-name>
+        <url-pattern>/jackson</url-pattern>
     </servlet-mapping>
 
 
