@@ -3,6 +3,9 @@ package utils;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,6 +17,7 @@ import java.util.Properties;
  */
 public class ConnectionManager {
     private static Connection conn;
+    private static String myDBProp = "src/main/resources/connection.properties";
 
     private ConnectionManager() {
 
@@ -26,9 +30,17 @@ public class ConnectionManager {
     public static Connection getConnection() {
         if(conn == null) {
             try {
+                ClassLoader cl = Thread.currentThread().getContextClassLoader();
+                URL[] urls = ((URLClassLoader)cl).getURLs();
+                for (URL url: urls) {
+                    System.out.println(url.getFile());
+                }
+
+                InputStream input = cl.getResourceAsStream("connection.properties");
                 Properties props = new Properties();
-                FileReader connectionProperties = new FileReader("src/main/resources/connection.properties");
-                props.load(connectionProperties);
+                props.load(input);
+
+                Class.forName("org.mariadb.jdbc.Driver");
 
                 //"jdbc:mariadb://hostname:port/databaseName?user=username&password=password"
                 String connString = "jdbc:mariadb://" +
@@ -38,9 +50,8 @@ public class ConnectionManager {
                         props.getProperty("user") + "&password=" +
                         props.getProperty("password");
 
-
                 conn = DriverManager.getConnection(connString);
-            } catch(SQLException | IOException e) {
+            } catch(SQLException | IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }

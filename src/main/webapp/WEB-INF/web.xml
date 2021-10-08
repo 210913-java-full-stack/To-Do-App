@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--web.xml is your depoyment descriptor
+<!--web.xml is your deployment descriptor
         this is how tomcat gathers information about your project, such as welcome files,
             available servlets, how to handle errors and exceptions, and other various
             configurations you may want tomcat to know about.
@@ -11,8 +11,37 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
         version="2.5">
 
+    <!--This tells tomcat where to find the servlet and what name to register it as. We can use
+            the name of the servlet later to reference this instance.
+            -->
+    <servlet>
+        <servlet-name>pingServlet</servlet-name>
+        <servlet-class>servlets.PingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>pingServlet</servlet-name>
+        <url-pattern>/ping</url-pattern>
+    </servlet-mapping>
 
+    <servlet>
+        <servlet-name>itemServlet</servlet-name>
+        <servlet-class>servlets.ItemServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>itemServlet</servlet-name>
+        <url-pattern>/item</url-pattern>
+    </servlet-mapping>
 
+    <servlet>
+        <servlet-name>jacksonServlet</servlet-name>
+        <servlet-class>servlet.JacksonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>jacksonServlet</servlet-name>
+        <url-pattern>/jackson</url-pattern>
+    </servlet-mapping>
 
-
+    <listener>
+        <listener-class>services.DependencyLoaderListener</listener-class>
+    </listener>
 </web-app>

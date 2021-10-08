@@ -8,7 +8,19 @@ public class CarModel {
     private String model;
     private int year;
 
-    public CarModel() {
+    public CarModel(String color, String make, String model, int year) {
+        this.color = color;
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
+
+    public CarModel(int id, String color, String make, String model, int year) {
+        this.id = id;
+        this.color = color;
+        this.make = make;
+        this.model = model;
+        this.year = year;
     }
 
     public int getId() {
@@ -49,5 +61,9 @@ public class CarModel {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public String toString(){
+        return getColor() + "" + getMake() + "" + getModel() + "" + getYear();
     }
 }

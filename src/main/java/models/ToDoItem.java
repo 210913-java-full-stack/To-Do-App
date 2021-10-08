@@ -54,6 +54,10 @@ public class ToDoItem {
         this.complete = complete;
     }
 
+    public String toString(){
+        return "To Do Item : " + getMessage();
+    }
+
     /*
     This is a list of the 8 java primitive types and the wrapper classes that correspond to them. ~-2,140,000 - ~2,140,000
      */
