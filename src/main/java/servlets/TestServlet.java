@@ -12,17 +12,22 @@ public class TestServlet extends HttpServlet {
     This will take a simple GET request and respond with "Pong!" and status 202, indicating the request was accepted.
      */
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int i = Integer.parseInt(req.getParameter("num1"));
-        int j = Integer.parseInt(req.getParameter("num2"));
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String testData = "[\n" +
+                "    {\n" +
+                "        \"id\": 2,\n" +
+                "        \"message\": \"enjoy your new to do list!\",\n" +
+                "        \"complete\": true,\n" +
+                "        \"extra\": false\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"id\": 3,\n" +
+                "        \"message\": \"Quit the app!\"\n" +
+                "    }\n" +
+                "]";
+        resp.getWriter().write(testData);
+        resp.setContentType("application/json");
+        resp.setStatus(200);
 
-        int k = i + j;
-
-        System.out.println("Sum: " + k);
-
-        resp.setContentType("text/plain");
-
-        PrintWriter out = resp.getWriter();
-        out.println("The sum is: " + k);
     }
 }

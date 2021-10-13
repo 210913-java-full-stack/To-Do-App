@@ -14,6 +14,18 @@
     <listener>
         <listener-class>servlets.DependencyLoaderListener</listener-class>
     </listener>
+
+    <!-- CORS FILTER -->
+    <filter>
+        <filter-name>CorsFilter</filter-name>
+        <filter-class>servlets.CORSFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CorsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- /CORS FILTER -->
+
     <servlet>
         <servlet-name>formServlet</servlet-name>
         <servlet-class>servlets.FormServlet</servlet-class>
@@ -27,9 +39,19 @@
         <servlet-name>testServlet</servlet-name>
         <servlet-class>servlets.TestServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>testServlet</servlet-name>
         <url-pattern>/test</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>toDoItemServlet</servlet-name>
+        <servlet-class>servlets.ToDoItemServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>toDoItemServlet</servlet-name>
+        <url-pattern>/toDoItems</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
