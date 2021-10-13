@@ -9,8 +9,7 @@ import java.sql.Connection;
 public class DependencyLoaderListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        Connection kahn = ConnectionManager.getConnection();
-
+        Connection conn = ConnectionManager.getConnection();
     }
 
     @Override

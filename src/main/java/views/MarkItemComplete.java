@@ -1,6 +1,6 @@
 package views;
 
-import DAOs.ToDoItemDAO;
+import DAOs.ToDoItemRepo;
 import collections.MyLinkedList;
 import models.ToDoItem;
 
@@ -25,7 +25,7 @@ public class MarkItemComplete extends View{
     @Override
     public void renderView() throws SQLException {
         MyLinkedList<ToDoItem> list;
-        ToDoItemDAO dao = new ToDoItemDAO(viewManager.getConn());
+        ToDoItemRepo dao = new ToDoItemRepo(viewManager.getConn());
         list = dao.getAllItems();
 
         System.out.println("========== To Do List: ==========");

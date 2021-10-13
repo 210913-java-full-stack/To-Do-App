@@ -7,11 +7,11 @@ import models.ToDoItem;
 
 import java.sql.*;
 
-public class ToDoItemDAO implements GenericDAO<ToDoItem> {
+public class ToDoItemRepo implements Repository<ToDoItem> {
     private Connection conn;
 
 
-    public ToDoItemDAO(Connection conn) throws SQLException {
+    public ToDoItemRepo(Connection conn) throws SQLException {
         this.conn = conn;
 
     }

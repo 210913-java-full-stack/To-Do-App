@@ -1,9 +1,4 @@
 
-import DAOs.CarDAO;
-import DAOs.ToDoItemDAO;
-import models.CarModel;
-import models.ToDoItem;
-import utils.ConnectionManager;
 import utils.ViewManager;
 
 
