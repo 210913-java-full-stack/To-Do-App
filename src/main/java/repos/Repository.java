@@ -1,9 +1,7 @@
-package DAOs;
+package repos;
 
 import collections.MyLinkedList;
-import models.ToDoItem;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -17,7 +15,7 @@ public interface Repository<T> {
     //read
         //query data from database, fill in empty model object
         public T getItemByID(int id) throws SQLException;
-        public MyLinkedList<T> getAllItems() throws SQLException;
+        public List<T> getAllItems() throws SQLException;
         //public ToDoItem getItemByKeyword(String keyword); //SELECT * FROM items WHERE message LIKE "%KEYWORD%"
     //update
         // we will use the save() method for updates

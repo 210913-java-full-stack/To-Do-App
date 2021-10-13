@@ -1,18 +1,19 @@
-package DAOs;
-
-
+package repos;
 
 import collections.MyLinkedList;
 import models.ToDoItem;
+import utils.ConnectionManager;
 
 import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ToDoItemRepo implements Repository<ToDoItem> {
     private Connection conn;
 
 
-    public ToDoItemRepo(Connection conn) throws SQLException {
-        this.conn = conn;
+    public ToDoItemRepo() throws SQLException {
+        this.conn = ConnectionManager.getConnection();
 
     }
 
@@ -66,13 +67,13 @@ public class ToDoItemRepo implements Repository<ToDoItem> {
     }
 
     @Override
-    public MyLinkedList<ToDoItem> getAllItems() throws SQLException {
+    public List<ToDoItem> getAllItems() throws SQLException {
         String sql = "SELECT * FROM to_do_items";
         Statement stmt = conn.createStatement();
 
         ResultSet rs = stmt.executeQuery(sql);
 
-        MyLinkedList<ToDoItem> resultList = new MyLinkedList<>();
+        List<ToDoItem> resultList = new LinkedList<>();
 
         while(rs.next()) {
             ToDoItem newItem = new ToDoItem(rs.getInt("id"), rs.getString("message"), rs.getBoolean("complete"));
