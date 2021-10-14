@@ -16,7 +16,7 @@ public class ToDoItemServlet extends HttpServlet {
 
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
 
         System.out.println("ToDoItem Servlet GET request...");
@@ -29,9 +29,13 @@ public class ToDoItemServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //super.doPost(req, resp);
-
-        //TODO: Add in logic to accept new ToDoItems and call some service that will persist them.
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+        ToDoItem newItem = new ToDoItem();
+        System.out.println("JSON received");
+        newItem.setId(Integer.parseInt(req.getParameter("id")));
+        newItem.setMessage(req.getParameter("message"));
+        newItem.setComplete(Boolean.getBoolean("complete"));
+        System.out.println("Item received");
+        ToDoItemService.saveNewToDoItem(newItem);
     }
 }

@@ -30,7 +30,11 @@ public class ToDoItemService {
     }
 
     public static void saveNewToDoItem(ToDoItem item) {
-        //TODO: FINISH THIS STUB
-        
+        try{
+            ToDoItemRepo repo = new ToDoItemRepo();
+            repo.save(item);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
