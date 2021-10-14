@@ -31,15 +31,10 @@ public class ConnectionManager {
         if(conn == null) {
             try {
                 ClassLoader cl = Thread.currentThread().getContextClassLoader();
-                URL[] urls = ((URLClassLoader)cl).getURLs();
-                for (URL url: urls) {
-                    System.out.println(url.getFile());
-                }
 
                 InputStream input = cl.getResourceAsStream("connection.properties");
                 Properties props = new Properties();
                 props.load(input);
-
                 Class.forName("org.mariadb.jdbc.Driver");
 
                 //"jdbc:mariadb://hostname:port/databaseName?user=username&password=password"
