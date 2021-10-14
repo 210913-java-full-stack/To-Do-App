@@ -27,7 +27,7 @@
 
     <script>
         (async function getToDoList() {
-            let response = await fetch("http://localhost:8080/to-do-api/test");
+            let response = await fetch("http://localhost:8080/to-do-api/toDoItems");
             let json = await response.json();
 
             let table = document.getElementById("ToDoItemTable");
@@ -38,7 +38,6 @@
                     let cell = tr.insertCell(-1);
                     cell.innerHTML =  element[key];
                 }
-
             }
         })();
 
