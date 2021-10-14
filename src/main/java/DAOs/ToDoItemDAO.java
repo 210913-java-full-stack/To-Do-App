@@ -10,8 +10,10 @@ import java.sql.*;
 public class ToDoItemDAO implements GenericDAO<ToDoItem> {
     private Connection conn;
 
-    public ToDoItemDAO(Connection conn) {
+
+    public ToDoItemDAO(Connection conn) throws SQLException {
         this.conn = conn;
+
     }
 
 
@@ -30,6 +32,8 @@ public class ToDoItemDAO implements GenericDAO<ToDoItem> {
             preparedUpdateStatement.setString(1, item.getMessage());
             preparedUpdateStatement.setBoolean(2, item.isComplete());
             preparedUpdateStatement.setInt(3, item.getId());
+
+            System.out.println(pstmt);
 
             preparedUpdateStatement.executeUpdate();
 
