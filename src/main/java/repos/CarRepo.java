@@ -1,4 +1,4 @@
-package DAOs;
+package repos;
 
 import models.CarModel;
 import utils.ConnectionManager;
@@ -18,7 +18,7 @@ import static java.sql.Statement.RETURN_GENERATED_KEYS;
  * This example shows how to retrieve the automatically generated key
  * after a new row is inserted into our table.
  */
-public class CarDAO {
+public class CarRepo {
     private static Connection conn = ConnectionManager.getConnection();
 
     public static void save(CarModel carModel) throws SQLException {

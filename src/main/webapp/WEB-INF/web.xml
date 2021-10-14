@@ -15,6 +15,7 @@
         <listener-class>servlets.DependencyLoaderListener</listener-class>
     </listener>
 
+<<<<<<< HEAD
     <servlet>
         <servlet-name>pingServlet</servlet-name>
         <servlet-class>servlets.PingServlet</servlet-class>
@@ -40,6 +41,38 @@
     <servlet-mapping>
         <servlet-name>jacksonServlet</servlet-name>
         <url-pattern>/jackson</url-pattern>
+=======
+    <!-- CORS FILTER -->
+    <filter>
+        <filter-name>CorsFilter</filter-name>
+        <filter-class>servlets.CORSFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>CorsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- /CORS FILTER -->
+
+    <servlet>
+        <servlet-name>testServlet</servlet-name>
+        <servlet-class>servlets.TestServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>testServlet</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>toDoItemServlet</servlet-name>
+        <servlet-class>servlets.ToDoItemServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>toDoItemServlet</servlet-name>
+        <url-pattern>/toDoItems</url-pattern>
+>>>>>>> b762675f4359691834b9eb352ea6941b195b4a5d
     </servlet-mapping>
 
 
