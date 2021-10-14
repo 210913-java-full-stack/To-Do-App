@@ -30,7 +30,7 @@ public class ToDoItemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        //super.doPost(req, resp);
 
         //TODO: Add in logic to accept new ToDoItems and call some service that will persist them.
     }
