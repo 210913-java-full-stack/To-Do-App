@@ -27,7 +27,7 @@
 
     <script>
         (async function getToDoList() {
-            let response = await fetch("http://localhost:8080/to-do-api/toDoItems");
+            let response = await fetch("http://localhost:8080/to-do-app/toDoItems");
             let json = await response.json();
 
             let table = document.getElementById("ToDoItemTable");
