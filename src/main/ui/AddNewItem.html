@@ -2,19 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add New Item</title>
+    <title>Adding an Item</title>
 </head>
 <body>
-<form method="post" action="http://localhost:8080/to-do-app/toDoItems">
-Please enter the item message:<input type="text" id="message" name="message" placeholder="item text here">
-<br><br>
-    Is the item complete? <select name="complete" id="complete">
-    <option value="Complete">Complete</option>
-    <option value="NotComplete">Not Complete</option>
-</select>
+<form id="myForm">
     <br><br>
-    <input type="submit" name="Submit">
+    <label for="message">Enter task:</label>
+    <input type="text" id="message" name="message">
+    <br><br>
+    <button type="submit">Submit Task</button>
 </form>
+<script>
+    const form = document.getElementById("myForm");
+
+    form.addEventListener("submit",function(event) {
+        event.preventDefault();
+        const { message, complete=false }= event.target.elements;
+
+        });
+
+        async function submitForm(messageValue){
+            let formObject={
+                message:messageValue,
+            }
+
+            let response = await fetch("http://localhost:8080/to-do-app/toDoItem", {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(formObject)
+            }
+            )
+        }();
+
+</script>
 
 </body>
 </html>
