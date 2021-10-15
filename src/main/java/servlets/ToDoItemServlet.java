@@ -8,9 +8,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ToDoItemServlet extends HttpServlet {
 
@@ -29,12 +31,13 @@ public class ToDoItemServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         ToDoItem newItem = new ToDoItem();
+        ObjectMapper mapper = new ObjectMapper();
         System.out.println("JSON received");
-        newItem.setId(Integer.parseInt(req.getParameter("id")));
-        newItem.setMessage(req.getParameter("message"));
-        newItem.setComplete(Boolean.getBoolean("complete"));
+        String requestData = req.getReader().lines().collect(Collectors.joining());
+        newItem = mapper.readValue(requestData,ToDoItem.class);
+        System.out.println(requestData);
         System.out.println("Item received");
         ToDoItemService.saveNewToDoItem(newItem);
     }

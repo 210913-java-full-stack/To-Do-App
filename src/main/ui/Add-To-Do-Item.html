@@ -10,18 +10,9 @@
 
 <body>
     <h1>Please add a item to that you want to do:</h1>
-    <form>
-        <label class="labels" for="id">ID: </label><br>
-        <input type="text" name="id" id ="id" required /><br>
-
-        <label class="labels" for="message">Message: </label><br>
+    <form id="myForm">
+        <label class="labels" for="message">Enter Task: </label><br>
         <input type="text" name="message" id="messgae" required /><br>
-
-        <label class="labels" for="complete">Complete?: </label><br>
-        <input type="radio" name="complete" id="Yes" value ="True"/>
-        <label for="Yes">Yes</label>
-        <input type="radio" name="complete" id="No" value="false"/>
-        <label for="No">No</label><br><br>
 
         <button type="submit">Submit</button><br>
 
@@ -30,24 +21,25 @@
     <script>
         function handleSubmit(event) {
             event.preventDefault();
-
-            const data = new FormData(event.target);
-
-            const toDoItem = Object.fromEntries(data.entries());
-
-            console.log({toDoItem});
-            asyncFunc();
+            //const { message, complete = false } = event.target.elements;
+            console.log(message.value);
+            asyncFunc(message.value);
         }
-        async function asyncFunc(toDoItem) {
+        async function asyncFunc(messageValue) {
+            let formObject = {
+                message: messageValue,
+                complete:false
+            }
+            
             let response = await fetch("http://localhost:8080/to-do-app/toDoItems", {
                 method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-        body:JSON.stringify(toDoItem)
+        body:JSON.stringify(formObject)
     });
             }
-        const form = document.querySelector('form');
+        const form = document.getElementById('myForm');
         form.addEventListener('submit', handleSubmit);
     </script>
 </body>
