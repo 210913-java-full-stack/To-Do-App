@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add ToDoItem</title>
+</head>
+<body>
+    <form id="myForm">
+        <label for="message">Enter task:</label>
+        <input id="message" type="text" name="message">
+        <button type="submit">Submit Task</button>
+    </form>
+
+    <br><br>
+    <a href="viewItems.html">View Agenda!</a>
+    <button type="navigate" onclick={navigateToViewPage()}>Go!</button>
+
+
+    <script>
+        const form = document.getElementById("myForm");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            //const { message, complete = false } = event.target.elements;
+            console.log(message.value);
+            submitForm(message.value);
+        });
+
+        async function submitForm(messageValue) {
+            let formObject = {
+                message: messageValue,
+                complete: false
+            }
+
+            console.log(formObject);
+
+            let response = await fetch("http://localhost:8080/to-do-api/toDoItems", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(formObject)
+            });  
+            navigateToViewPage();      
+        }
+
+        //Javascript to navigate like a link:
+        function navigateToViewPage() {
+            console.log("test");
+            window.location.href = "viewItems.html";
+        }
+        function navigate(location) {window.location.href = location;}
+
+
+    </script>
+    
+</body>
+</html>

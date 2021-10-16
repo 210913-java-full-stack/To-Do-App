@@ -14,16 +14,21 @@ public class DependencyLoaderListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+
+        //Connection conn = ConnectionManager.getConnection();
         ToDoItemService.init();
 
+        //Hibernate config and context initialization
         Configuration config = new Configuration();
         config.addAnnotatedClass(ToDoItem.class);
-        sessionFactory = config.buildSessionFactory();
-        session = sessionFactory.openSession();
+        ToDoItemService.setSessionFactory(config.buildSessionFactory());
+        ToDoItemService.setSession(ToDoItemService.getSessionFactory().openSession());
+
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        session.close();
+        ToDoItemService.getSession().close();
+
     }
 }

@@ -45,6 +45,7 @@ public class CORSFilter implements Filter {
         ((HttpServletResponse) servletResponse).addHeader("Access-Control-Allow-Origin", "*");
         ((HttpServletResponse) servletResponse).addHeader("Access-Control-Allow-Methods","*");
         ((HttpServletResponse) servletResponse).addHeader("Access-Control-Allow-Headers","*");
+
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
         // For HTTP OPTIONS verb/method reply with ACCEPTED status code -- per CORS handshake

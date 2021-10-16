@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="to_do_item")
 public class ToDoItem {
+
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,8 +18,14 @@ public class ToDoItem {
     private boolean complete;
 
 
+
     public ToDoItem() {
         complete = false;
+    }
+
+    public ToDoItem(String message) {
+        complete = false;
+        this.message = message;
     }
 
     public ToDoItem(int id, String message, boolean complete) {
@@ -28,20 +35,18 @@ public class ToDoItem {
     }
 
 
+
     public Integer getId() {return id;}
     public void setId(Integer id) {this.id = id;}
     public String getMessage() {
         return message;
     }
-
     public void setMessage(String message) {
         this.message = message;
     }
-
     public boolean isComplete() {
         return complete;
     }
-
     public void setComplete(boolean complete) {
         this.complete = complete;
     }
