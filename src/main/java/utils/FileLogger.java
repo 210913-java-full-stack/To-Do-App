@@ -1,7 +1,5 @@
 package utils;
 
-import org.mariadb.jdbc.internal.com.read.resultset.SelectResultSet;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -17,12 +15,12 @@ public class FileLogger {
     private static boolean printToConsole;
     private static boolean printToConsoleTemp = false;
 
-    public enum Threshold {
-        INFO,
-        WARN,
-        MODERATE,
-        SEVERE
-    }
+//    public enum Threshold {
+//        INFO,
+//        WARN,
+//        MODERATE,
+//        SEVERE
+//    }
 
     private FileLogger() {
         printToConsole = false;
@@ -40,7 +38,7 @@ public class FileLogger {
 
 
     public void writeLog(String message, int level) {
-        try (FileWriter fileWriter = new FileWriter(getLogFileName(), true);){
+        try (FileWriter fileWriter = new FileWriter(getLogFileName(), true)){
             String logEntry = formatLogEntry(message);
 
             if(level >= threshold) {
