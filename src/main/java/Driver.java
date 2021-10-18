@@ -9,7 +9,7 @@ import java.sql.*;
 //This is where our program starts, with the main method and contains the menus and primary loop.
 public class Driver {
     public static void main(String[] args) {
-        FileLogger.getFileLogger().writeLog("Test message", 0);
+        FileLogger.getFileLogger().console().threshold(0).writeLog("Test message", 0);
     }
 }
 

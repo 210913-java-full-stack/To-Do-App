@@ -27,7 +27,7 @@ public class FileLogger {
     private FileLogger() {
         printToConsole = false;
         printToConsoleTemp = false;
-        //threshold = Threshold.MODERATE;
+        threshold = 3;
 
     }
 
@@ -43,20 +43,14 @@ public class FileLogger {
         try (FileWriter fileWriter = new FileWriter(getLogFileName(), true);){
             String logEntry = formatLogEntry(message);
 
-            if(level > threshold) {
+            if(level >= threshold) {
                 fileWriter.write(logEntry);
             }
 
-            //TODO: Write logging level filtering logic here
-
-            fileWriter.write(logEntry);
-
-            if(printToConsole) {
+            if(printToConsole|| printToConsoleTemp) {
                 System.out.println(logEntry);
-                printToConsole = false;
+                printToConsoleTemp = false;
             }
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,12 +59,12 @@ public class FileLogger {
 
     private String getLogFileName() {
         String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        return today + "log";
+        return "logs/" + today + "log";
     }
 
     private String formatLogEntry(String message) {
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
-        String stackInfo = stackTraceElements[2].toString();
+        String stackInfo = stackTraceElements[3].toString();
         String timeStamp = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         return String.format("%s [%s] %s", timeStamp, stackInfo, message);
     }
