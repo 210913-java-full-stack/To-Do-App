@@ -29,6 +29,7 @@ public class ToDoItemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String payloadType = req.getHeader("payload-type");
         //TODO: Add in logic to accept new ToDoItems and call some service that will persist them.
         InputStream requestBody = req.getInputStream();
         Scanner sc = new Scanner(requestBody, StandardCharsets.UTF_8.name());

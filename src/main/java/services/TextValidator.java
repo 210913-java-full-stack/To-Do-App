@@ -27,7 +27,7 @@ public class TextValidator {
         FileReader fileReader = new FileReader(new File("someFile.txt"));
         // oops need to look up the proper way to mock constructors with other mocks as parameters
         Connection conn = ConnectionManager.getConnection();
-        String testStr = fileReader.
+        //String testStr = fileReader.
 
         //there would be program logic here
         //lets pretend our method should return the value 5
