@@ -38,7 +38,10 @@
 
             let response = await fetch("http://localhost:8080/to-do-api/toDoItems", {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
+                headers: {
+                    "Content-Type": "application/json",
+                    "payload-type": "new-item"
+                },
                 body: JSON.stringify(formObject)
             });  
             navigateToViewPage();      

@@ -1,6 +1,7 @@
 package services;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.MockedConstruction;
 import org.mockito.Mockito;
@@ -27,6 +28,7 @@ public class TextValidatorTest {
 
     //let's test our nonsense method
     @Test
+    @Ignore
     public void Test_testOurNonsenseMethodForTrue() throws IOException {
         //arrange
         TextValidator sut = new TextValidator("pattern");

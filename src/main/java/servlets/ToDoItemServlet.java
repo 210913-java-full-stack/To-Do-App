@@ -29,14 +29,25 @@ public class ToDoItemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //TODO: Add in logic to accept new ToDoItems and call some service that will persist them.
-        InputStream requestBody = req.getInputStream();
-        Scanner sc = new Scanner(requestBody, StandardCharsets.UTF_8.name());
-        String jsonText = sc.useDelimiter("\\A").next();
-        System.out.println("DEBUG - JSON Text: " + jsonText);
-        ObjectMapper mapper = new ObjectMapper();
-        ToDoItem payload = mapper.readValue(jsonText, ToDoItem.class);
-        ToDoItemService.saveNewToDoItem(payload);
+        /*
+        if we need to invoke different logic depending on what's sent to this servlet
+        we could accomplish this by sending along a header that tells us what the specifics of this request are.
+         */
+        String payloadType = req.getHeader("payload-type");
+        switch(payloadType) {
+            case "new-item":
+                InputStream requestBody = req.getInputStream();
+                Scanner sc = new Scanner(requestBody, StandardCharsets.UTF_8.name());
+                String jsonText = sc.useDelimiter("\\A").next();
+                System.out.println("DEBUG - JSON Text: " + jsonText);
+                ObjectMapper mapper = new ObjectMapper();
+                ToDoItem payload = mapper.readValue(jsonText, ToDoItem.class);
+                ToDoItemService.saveNewToDoItem(payload);
+                break;
+            case "something-else":
+                break;
+        }
+
     }
 
 
