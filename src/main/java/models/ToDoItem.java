@@ -5,7 +5,6 @@ import javax.persistence.*;
 @Entity
 @Table(name="To_Do_Items")
 public class ToDoItem {
-
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -79,3 +79,6 @@ fabric.properties
 
 #sensitive connection info
 *.properties
+
+#logs
+*.log
