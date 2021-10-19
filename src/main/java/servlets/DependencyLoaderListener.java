@@ -32,5 +32,11 @@ public class DependencyLoaderListener implements ServletContextListener {
     public void contextDestroyed(ServletContextEvent sce) {
         ToDoItemService.getSession().close();
 
+
     }
 }
+
+
+
+
+
