@@ -32,12 +32,15 @@
             console.log("query parameter test: ", urlParameters.get("testParameter"));//value should be "test"
             console.log("query parameter username: ", urlParameters.get("username"));//value should be "kyle"
         })();
-
+        //http://localhost:8080/to-do-api/toDoItems
+        //http://todoapp.us-east-2.elasticbeanstalk.com/toDoItems
         (async function getToDoList() {
-            let response = await fetch("http://localhost:8080/to-do-api/toDoItems");//1 parameter assumes this is a get request
-            let json = response.json();
-            let role = json.role;
+            let response = await fetch("http://todoapp.us-east-2.elasticbeanstalk.com/toDoItems");//1 parameter assumes this is a get request
+            let json = await response.json();
+            await populateTable(json);
+        })();
 
+        function populateTable(json){
             let table = document.getElementById("ToDoItemTable");
 
             for(let element of json) {
@@ -47,7 +50,9 @@
                     cell.innerHTML =  element[key];
                 }
             }
-        })();
+        }
+
+        //function populateTable()
 
         // (async function testThingy() {
         //     let response = await fetch("http://localhost:8080/simple-servlets/things/");
