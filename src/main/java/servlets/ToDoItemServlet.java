@@ -67,6 +67,7 @@ public class ToDoItemServlet extends HttpServlet {
                 ObjectMapper mapper = new ObjectMapper();
                 ToDoItem payload = mapper.readValue(jsonText, ToDoItem.class);
                 ToDoItemService.saveNewToDoItem(payload);
+                resp.setStatus(202);
                 break;
             case "something-else":
                 break;

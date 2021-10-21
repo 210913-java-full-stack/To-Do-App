@@ -20,6 +20,8 @@ public class HibernateService {
             //System.getenv("TEST");//Tomcat on elastic beanstalk will not see these
             //System.getProperty("TEST");//Tomcat on EBS will see these. That's why we use them below.
 
+            //This part isn't necessary if we are bundling
+
             config.setProperty("hibernate.dialect", System.getProperty("HIBERNATE_DIALECT"));
             config.setProperty("hibernate.connection.driver_class", System.getProperty("HIBERNATE_CONNECTION_DRIVER_CLASS"));
             config.setProperty("hibernate.connection.url", System.getProperty("HIBERNATE_CONNECTION_URL"));
