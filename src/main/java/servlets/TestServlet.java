@@ -13,20 +13,10 @@ public class TestServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String testData = "[\n" +
-                "    {\n" +
-                "        \"id\": 2,\n" +
-                "        \"message\": \"enjoy your new to do list!\",\n" +
-                "        \"complete\": true,\n" +
-                "        \"extra\": false\n" +
-                "    },\n" +
-                "    {\n" +
-                "        \"id\": 3,\n" +
-                "        \"message\": \"Quit the app!\"\n" +
-                "    }\n" +
-                "]";
-        resp.getWriter().write(testData);
-        resp.setContentType("application/json");
+        resp.getWriter().write(System.getProperty("HIBERNATE_DIALECT") + System.getProperty("HIBERNATE_CONNECTION_DRIVER_CLASS")
+        + System.getProperty("HIBERNATE_CONNECTION_USERNAME") + System.getProperty("HIBERNATE_CONNECTION_PASSWORD") + System.getProperty("HIBERNATE_HBM2DDL_AUTO")
+        + System.getProperty("HIBERNATE_CONNECTION_AUTOCOMMIT") +System.getProperty("HIBERNATE_SHOW_SQL") );
+        resp.setContentType("plain/text");
         resp.setStatus(200);
 
     }

@@ -39,7 +39,7 @@ public class ToDoItemServlet extends HttpServlet {
                 InputStream requestBody = req.getInputStream();
                 Scanner sc = new Scanner(requestBody, StandardCharsets.UTF_8.name());
                 String jsonText = sc.useDelimiter("\\A").next();
-                System.out.println("DEBUG - JSON Text: " + jsonText);
+                //System.out.println("DEBUG - JSON Text: " + jsonText);
                 ObjectMapper mapper = new ObjectMapper();
                 ToDoItem payload = mapper.readValue(jsonText, ToDoItem.class);
                 ToDoItemService.saveNewToDoItem(payload);
