@@ -24,7 +24,7 @@
         form.addEventListener("submit", function(event) {
             event.preventDefault();
             //const { message, complete = false } = event.target.elements;
-            console.log(message.value);
+            console.log("message.value: ", message.value);
             submitForm(message.value);
         });
 
@@ -34,16 +34,15 @@
                 complete: false
             }
 
-            console.log(formObject);
+            console.log("formObject: ", formObject);
 
             //http://localhost:8080/to-do-api/toDoItems
+            //http://todoapp.us-east-2.elasticbeanstalk.com/toDoItems
             let response = await fetch("http://todoapp.us-east-2.elasticbeanstalk.com/toDoItems", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "payload-type": "new-item",
-                    "you-can-make-up-headers": "As much as you want.",
-                    "These are simply key-value pairs": "Use them however you like"
+                    "payload-type": "new-item"
                 },
                 body: JSON.stringify(formObject)
             });  
