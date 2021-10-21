@@ -26,9 +26,17 @@
 
 
     <script>
+        (function getQueryParameter() {
+            let urlParameters = new URLSearchParams(window.location.search);
+            console.log("total url params: ", urlParameters);//console.dir?
+            console.log("query parameter test: ", urlParameters.get("testParameter"));//value should be "test"
+            console.log("query parameter username: ", urlParameters.get("username"));//value should be "kyle"
+        })();
+
         (async function getToDoList() {
-            let response = await fetch("http://localhost:8080/to-do-api/toDoItems");
-            let json = await response.json();
+            let response = await fetch("http://localhost:8080/to-do-api/toDoItems");//1 parameter assumes this is a get request
+            let json = response.json();
+            let role = json.role;
 
             let table = document.getElementById("ToDoItemTable");
 

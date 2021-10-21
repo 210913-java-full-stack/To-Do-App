@@ -36,11 +36,14 @@
 
             console.log(formObject);
 
-            let response = await fetch("http://localhost:8080/to-do-api/toDoItems", {
+            //http://localhost:8080/to-do-api/toDoItems
+            let response = await fetch("http://to-do-app.us-east-2.elasticbeanstalk.com/toDoItems", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "payload-type": "new-item"
+                    "payload-type": "new-item",
+                    "you-can-make-up-headers": "As much as you want.",
+                    "These are simply key-value pairs": "Use them however you like"
                 },
                 body: JSON.stringify(formObject)
             });  
@@ -50,7 +53,7 @@
         //Javascript to navigate like a link:
         function navigateToViewPage() {
             console.log("test");
-            window.location.href = "viewItems.html";
+            window.location.href = "viewItems.html?testParameter=test&username=kyle";
         }
         function navigate(location) {window.location.href = location;}
 
