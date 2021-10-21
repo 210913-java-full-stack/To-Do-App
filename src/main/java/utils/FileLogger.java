@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class FileLogger {
+<<<<<<< HEAD
     //print some or all of the stack trace to file
     //logging levels - Severe, moderate, warming, info
 
@@ -14,6 +15,12 @@ public class FileLogger {
     private static int threshold;
     private static boolean printToConsole;
     private static boolean printToConsoleTemp = false;
+=======
+    private static FileLogger fileLogger;
+    private static int threshold; //would like to enumerate thresholds and devise something that checks inequality
+    private static boolean printToConsole;
+    private static boolean printToConsoleTemp;
+>>>>>>> 31e7d02c7d0ecf7d68b6c65cc8ee2a1562c8ec66
 
 //    public enum Threshold {
 //        INFO,
@@ -26,6 +33,7 @@ public class FileLogger {
         printToConsole = false;
         printToConsoleTemp = false;
         threshold = 3;
+<<<<<<< HEAD
 
     }
 
@@ -39,15 +47,37 @@ public class FileLogger {
 
     public void writeLog(String message, int level) {
         try (FileWriter fileWriter = new FileWriter(getLogFileName(), true)){
+=======
+    }
+
+    public static FileLogger getFileLogger(){
+        if(fileLogger == null) {
+            fileLogger = new FileLogger();
+        }
+        return fileLogger;
+    }
+
+    public void writeLog(String message, int level) {
+        try (FileWriter fileWriter = new FileWriter(getLogFileName(), true)){//try-with-resources block, filewriter will auto-close
+>>>>>>> 31e7d02c7d0ecf7d68b6c65cc8ee2a1562c8ec66
             String logEntry = formatLogEntry(message);
 
             if(level >= threshold) {
                 fileWriter.write(logEntry);
+<<<<<<< HEAD
             }
 
             if(printToConsole|| printToConsoleTemp) {
                 System.out.println(logEntry);
                 printToConsoleTemp = false;
+=======
+                }
+
+            if(printToConsole || printToConsoleTemp) {
+                System.out.println(logEntry);
+                printToConsoleTemp = false;
+
+>>>>>>> 31e7d02c7d0ecf7d68b6c65cc8ee2a1562c8ec66
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -57,6 +87,7 @@ public class FileLogger {
 
     private String getLogFileName() {
         String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+<<<<<<< HEAD
         return "logs/" + today + "log";
     }
 
@@ -65,6 +96,16 @@ public class FileLogger {
         String stackInfo = stackTraceElements[3].toString();
         String timeStamp = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         return String.format("%s [%s] %s", timeStamp, stackInfo, message);
+=======
+        return today + ".log";
+    }
+
+    private String formatLogEntry(String message){
+        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+        String stackInfo = stackTraceElements[3].toString();
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        return String.format("%s  [%s]  %s%n", timestamp, stackInfo, message);
+>>>>>>> 31e7d02c7d0ecf7d68b6c65cc8ee2a1562c8ec66
     }
 
     public FileLogger console() {
@@ -77,9 +118,12 @@ public class FileLogger {
         return fileLogger;
     }
 
+<<<<<<< HEAD
 //    private boolean checkThreshold(Threshold level) {
 //
 //    }
+=======
+>>>>>>> 31e7d02c7d0ecf7d68b6c65cc8ee2a1562c8ec66
     public static boolean isPrintToConsole() {
         return printToConsole;
     }
@@ -88,7 +132,10 @@ public class FileLogger {
         FileLogger.printToConsole = printToConsole;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 31e7d02c7d0ecf7d68b6c65cc8ee2a1562c8ec66
     public static int getThreshold() {
         return threshold;
     }
