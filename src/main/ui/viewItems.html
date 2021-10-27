@@ -33,9 +33,9 @@
             console.log("query parameter username: ", urlParameters.get("username"));//value should be "kyle"
         })();
         //http://localhost:8080/to-do-api/toDoItems
-        //http://todoapp.us-east-2.elasticbeanstalk.com/toDoItems
+        //Todoapp-env.eba-ra3szjw2.us-east-2.elasticbeanstalk.com/toDoItems
         (async function getToDoList() {
-            let response = await fetch("http://todoapp.us-east-2.elasticbeanstalk.com/toDoItems");//1 parameter assumes this is a get request
+            let response = await fetch("http://Todoapp-env.eba-ra3szjw2.us-east-2.elasticbeanstalk.com/toDoItems");//1 parameter assumes this is a get request
             let json = await response.json();
             await populateTable(json);
         })();
