@@ -31,7 +31,6 @@ public class CORSFilter implements Filter {
     }
 
 
-
     /**
      * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
      */

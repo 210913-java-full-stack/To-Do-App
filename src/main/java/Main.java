@@ -13,5 +13,6 @@ public class Main {
 
         FileLogger.getFileLogger().console().threshold(0).writeLog("Here is our log file message", 0);
 
+
     }
 }
