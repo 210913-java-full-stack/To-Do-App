@@ -1,5 +1,5 @@
 # To Do App
-We will be building and refactoring a simple to-do list application throughout the first two weeks of training. The app we build can be found here in this repository.
+We will be building and refactoring a simple to-do list application throughout the first two weeks of training. The app we build can be found here in this repository. 
 
 ## Technology
 We want to practice the basic technologies we will touch upon in the first two weeks of training. To that end the to-do app will utilize:
